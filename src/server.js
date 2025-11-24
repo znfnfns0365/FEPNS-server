@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { swaggerUi, specs } from './swagger/swagger.js';
 import initServer from './init/index.js';
+import healthRouter from './routers/health.js';
 
 const app = express();
 const server = createServer(app);
@@ -30,6 +31,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 await initServer();
 
 // 라우터 설정
+app.use('/api/health', healthRouter);
 
 // 서버 시작
 server.listen(PORT, () => {
