@@ -17,7 +17,7 @@ const testDbConnection = async (pool, dbName) => {
 };
 
 const testAllConnections = async () => {
-    await testDbConnection(pools.main, 'main');
+    await testDbConnection(pools.fepns, 'fepns');
 };
 
 export { testDbConnection, testAllConnections };

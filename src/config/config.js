@@ -1,4 +1,13 @@
-import { PORT, HOST, JWT_SECRET_KEY, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from '../constant/env.js';
+import {
+    PORT,
+    HOST,
+    JWT_SECRET_KEY,
+    DB_HOST,
+    DB_PORT,
+    DB_USER,
+    DB_PASSWORD,
+    DB_NAME,
+} from '../constant/env.js';
 
 export const config = {
     server: {
