@@ -29,7 +29,7 @@ export const userRegisterHandler = async (req, res) => {
             },
         });
     }
-    const userId = body.userRequest.action.params.id;
+    const userId = body.action.params.id;
     const idCheck = await findKakaoIdByUserId(userId);
     if (idCheck) {
         return res.status(200).json({
