@@ -4,6 +4,24 @@ import {
     insertUserIdByKakaoId,
 } from '../users/db/userDb.js';
 
+const USER_ID_REGEX = /^[A-Za-z0-9_]+$/;
+
+const validateUserId = (userId) => {
+    if (typeof userId !== 'string') {
+        return '아이디가 올바르지 않습니다.';
+    }
+
+    if (userId.length < 2 || userId.length > 20) {
+        return '아이디는 2~20자의 영문, 숫자, 밑줄만 사용할 수 있습니다.';
+    }
+
+    if (!USER_ID_REGEX.test(userId)) {
+        return '아이디는 영문, 숫자, 밑줄(_)만 사용할 수 있습니다.';
+    }
+
+    return null;
+};
+
 export const userRegisterHandler = async (req, res) => {
     const { header, body } = req;
     const kakaoId = body.userRequest.user.id;
@@ -29,7 +47,31 @@ export const userRegisterHandler = async (req, res) => {
             },
         });
     }
-    const userId = body.action.params.id;
+    const userId = body.action?.params?.id;
+
+    const validationError = validateUserId(userId);
+    if (validationError) {
+        return res.status(200).json({
+            version: '2.0',
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: validationError,
+                        },
+                    },
+                ],
+                quickReplies: [
+                    {
+                        label: '아이디 다시 생성하기',
+                        action: 'message',
+                        messageText: 'ID 생성하기',
+                    },
+                ],
+            },
+        });
+    }
+
     const idCheck = await findKakaoIdByUserId(userId);
     if (idCheck) {
         return res.status(200).json({
