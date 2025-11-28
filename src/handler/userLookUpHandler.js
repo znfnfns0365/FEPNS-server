@@ -1,14 +1,30 @@
 import { findUserIdByKakaoId } from '../users/db/userDb.js';
 
 export const userLookUpHandler = async (req, res) => {
-    console.log(req.body);
     const kakaoId = req.body.body.userRequest.user.id;
-    console.log(kakaoId);
     const user = await findUserIdByKakaoId(kakaoId);
-    console.log(user);
     if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(200).json({
+            version: '2.0',
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: '사용자님의 아이디를 찾을 수 없습니다.',
+                        },
+                    },
+                ],
+                quickReplies: [
+                    {
+                        label: '아이디 생성',
+                        action: 'message',
+                        messageText: 'ID 등록 블록',
+                    },
+                ],
+            },
+        });
     }
+    console.log(user.user_id + '가 사용자 아이디 조회함');
     return res.status(200).json({
         version: '2.0',
         template: {
