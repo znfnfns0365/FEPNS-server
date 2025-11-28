@@ -9,7 +9,25 @@ export const userLookUpHandler = async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
-    return res.status(200).json({ user: user.user_id });
+    return res.status(200).json({
+        version: '2.0',
+        template: {
+            outputs: [
+                {
+                    simpleText: {
+                        text: `사용자님의 아이디: ${user.user_id}`,
+                    },
+                },
+            ],
+            quickReplies: [
+                {
+                    label: '홈',
+                    action: 'message',
+                    messageText: '홈',
+                },
+            ],
+        },
+    });
 };
 
 export default userLookUpHandler;

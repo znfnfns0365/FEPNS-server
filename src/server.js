@@ -4,7 +4,7 @@ import cors from 'cors';
 import { config } from './config/config.js';
 import initServer from './init/index.js';
 import healthRouter from './routers/health.js';
-import userLookUpRouter from './routers/userLookUp.js';
+import userLookUpRouter from './routers/userLookUpRouter.js';
 
 const app = express();
 const server = createServer(app);
