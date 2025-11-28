@@ -60,7 +60,7 @@ export const userRegisterHandler = async (req, res) => {
             outputs: [
                 {
                     simpleText: {
-                        text: `사용자님의 아이디: ${user.user_id}`,
+                        text: `사용자님의 아이디: ${userId}`,
                     },
                 },
             ],
