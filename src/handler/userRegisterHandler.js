@@ -1,4 +1,8 @@
-import { findKakaoIdByUserId, insertUserIdByKakaoId } from '../users/db/userDb.js';
+import {
+    findKakaoIdByUserId,
+    findUserIdByKakaoId,
+    insertUserIdByKakaoId,
+} from '../users/db/userDb.js';
 
 export const userRegisterHandler = async (req, res) => {
     const { header, body } = req;
