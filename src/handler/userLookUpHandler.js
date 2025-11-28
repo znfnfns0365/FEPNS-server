@@ -18,7 +18,7 @@ export const userLookUpHandler = async (req, res) => {
                     {
                         label: '아이디 생성',
                         action: 'message',
-                        messageText: 'ID 등록 블록',
+                        messageText: 'ID 생성하기',
                     },
                 ],
             },
