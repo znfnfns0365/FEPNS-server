@@ -1,7 +1,7 @@
 import { findUserIdByKakaoId } from '../users/db/userDb.js';
 
 export const userLookUpHandler = async (req, res) => {
-    const kakaoId = req.body.body.userRequest.user.id;
+    const kakaoId = req.body.userRequest.user.id;
     const user = await findUserIdByKakaoId(kakaoId);
     if (!user) {
         return res.status(200).json({
