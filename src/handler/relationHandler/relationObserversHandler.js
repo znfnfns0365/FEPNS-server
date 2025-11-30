@@ -64,7 +64,7 @@ export const relationObserversHandler = async (req, res) => {
         });
     } catch (error) {
         console.error('리스트 조회 중 오류:', error);
-        return res.status(500).json({
+        return res.status(200).json({
             version: '2.0',
             template: {
                 outputs: [
@@ -79,4 +79,3 @@ export const relationObserversHandler = async (req, res) => {
         });
     }
 };
-

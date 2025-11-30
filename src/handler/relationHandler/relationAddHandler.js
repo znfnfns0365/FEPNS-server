@@ -83,8 +83,26 @@ export const addRelationHandler = async (req, res) => {
 
     // 관계 추가
     try {
+        // curious 관계라면 관계 추가 전에 조회 반대로 해서 존재 여부 확인
         await insertRelation(user.id, friend.id, listType);
         const listTypeName = LIST_TYPE_NAMES[listType];
+
+        // listType에 따른 설명 메시지
+        let description = '';
+        switch (listType) {
+            case 'SEND':
+                description = `이제 경조사를 올리면 ${friendId}님에게 알림이 전달됩니다.`;
+                break;
+            case 'SEND_BLOCK':
+                description = `${friendId}님이 나를 궁금 리스트에 추가해놨어도 경조사를 전송하지 않습니다.`;
+                break;
+            case 'CURIOUS':
+                description = `${friendId}님의 전송 리스트에 없어도 ${friendId}님의 경조사 소식을 알 수 있습니다.`;
+                break;
+            case 'RECEIVE_BLOCK':
+                description = `${friendId}님이 나를 전송 리스트에 넣어놓고 경조사를 생성해도 알림을 받지 않습니다.`;
+                break;
+        }
 
         return res.status(200).json({
             version: '2.0',
@@ -92,7 +110,7 @@ export const addRelationHandler = async (req, res) => {
                 outputs: [
                     {
                         simpleText: {
-                            text: `✅ '${friendId}'님을 ${listTypeName}에 추가했습니다.\n이제 경조사를 올리면 ${friendId}님에게 알림이 전달됩니다.`,
+                            text: `✅ '${friendId}'님을 ${listTypeName}에 추가했습니다.\n${description}`,
                         },
                     },
                 ],
