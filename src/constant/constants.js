@@ -35,5 +35,9 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: 'ID 조회하기',
     },
+    RETRY_LIST_LOOKUP: {
+        label: '다시 조회하기',
+        action: 'message',
+        messageText: '친구 목록',
+    },
 };
-

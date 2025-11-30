@@ -18,3 +18,11 @@ export const checkConflictingRelation = async (userId, friendUserId, listType) =
     ]);
     return rows[0];
 };
+
+export const getRelationsByListType = async (userId, listType) => {
+    const [rows] = await pools.fepns.query(RELATION_QUERIES.GET_USERS_BY_LIST_TYPE, [
+        userId,
+        listType,
+    ]);
+    return rows;
+};
