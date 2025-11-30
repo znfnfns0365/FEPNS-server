@@ -1,4 +1,4 @@
-import pools from '../../db/database.js';
+import pools from '../database.js';
 import { SQL_QUERIES } from './userQuery.js';
 
 export const findUserIdByKakaoId = async (kakaoId) => {
@@ -13,5 +13,10 @@ export const insertUserIdByKakaoId = async (userId, kakaoId) => {
 
 export const findKakaoIdByUserId = async (userId) => {
     const [rows] = await pools.fepns.query(SQL_QUERIES.FIND_KAKAOID_BY_USERID, [userId]);
+    return rows[0];
+};
+
+export const findUserByUserId = async (userId) => {
+    const [rows] = await pools.fepns.query(SQL_QUERIES.FIND_USER_BY_USERID, [userId]);
     return rows[0];
 };

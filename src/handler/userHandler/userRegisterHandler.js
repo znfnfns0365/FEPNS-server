@@ -2,7 +2,7 @@ import {
     findKakaoIdByUserId,
     findUserIdByKakaoId,
     insertUserIdByKakaoId,
-} from '../users/db/userDb.js';
+} from '../../users/db/userDb.js';
 
 const USER_ID_REGEX = /^[A-Za-z0-9_]+$/;
 

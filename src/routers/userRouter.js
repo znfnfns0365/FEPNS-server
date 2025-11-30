@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { userRegisterHandler } from '../handler/userRegisterHandler.js';
-import { userLookUpHandler } from '../handler/userLookUpHandler.js';
+import { userRegisterHandler } from '../handler/userHandler/userRegisterHandler.js';
+import { userLookUpHandler } from '../handler/userHandler/userLookUpHandler.js';
 import { findUser } from '../middleware/findUser.js';
 
 const userRouter = Router();

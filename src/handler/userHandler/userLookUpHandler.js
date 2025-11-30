@@ -1,4 +1,4 @@
-import { findUserIdByKakaoId } from '../users/db/userDb.js';
+import { findUserIdByKakaoId } from '../../users/db/userDb.js';
 
 export const userLookUpHandler = async (req, res) => {
     const user = req.user;
