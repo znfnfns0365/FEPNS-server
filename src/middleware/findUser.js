@@ -1,4 +1,5 @@
 import { findUserIdByKakaoId } from '../db/users/userDb.js';
+import { QUICK_REPLIES } from '../constant/constants.js';
 
 export const findUser = async (req, res, next) => {
     const kakaoId = req.body.userRequest.user.id;
@@ -14,13 +15,7 @@ export const findUser = async (req, res, next) => {
                         },
                     },
                 ],
-                quickReplies: [
-                    {
-                        label: '아이디 생성',
-                        action: 'message',
-                        messageText: 'ID 생성하기',
-                    },
-                ],
+                quickReplies: [QUICK_REPLIES.CREATE_ID],
             },
         });
     }

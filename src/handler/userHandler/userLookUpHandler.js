@@ -1,4 +1,4 @@
-import { findUserIdByKakaoId } from '../../users/db/userDb.js';
+import { QUICK_REPLIES } from '../../constant/constants.js';
 
 export const userLookUpHandler = async (req, res) => {
     const user = req.user;
@@ -13,13 +13,7 @@ export const userLookUpHandler = async (req, res) => {
                     },
                 },
             ],
-            quickReplies: [
-                {
-                    label: '홈',
-                    action: 'message',
-                    messageText: '홈',
-                },
-            ],
+            quickReplies: [QUICK_REPLIES.HOME],
         },
     });
 };

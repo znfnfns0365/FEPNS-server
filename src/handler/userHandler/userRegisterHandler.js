@@ -2,7 +2,8 @@ import {
     findKakaoIdByUserId,
     findUserIdByKakaoId,
     insertUserIdByKakaoId,
-} from '../../users/db/userDb.js';
+} from '../../db/users/userDb.js';
+import { QUICK_REPLIES } from '../../constant/constants.js';
 
 const USER_ID_REGEX = /^[A-Za-z0-9_]+$/;
 
@@ -37,13 +38,7 @@ export const userRegisterHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [
-                    {
-                        label: '아이디 조회',
-                        action: 'message',
-                        messageText: 'ID 조회하기',
-                    },
-                ],
+                quickReplies: [QUICK_REPLIES.LOOKUP_ID],
             },
         });
     }
@@ -61,13 +56,7 @@ export const userRegisterHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [
-                    {
-                        label: '아이디 다시 생성하기',
-                        action: 'message',
-                        messageText: 'ID 생성하기',
-                    },
-                ],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID],
             },
         });
     }
@@ -84,13 +73,7 @@ export const userRegisterHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [
-                    {
-                        label: '아이디 다시 생성하기',
-                        action: 'message',
-                        messageText: 'ID 생성하기',
-                    },
-                ],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID],
             },
         });
     }
@@ -106,13 +89,7 @@ export const userRegisterHandler = async (req, res) => {
                     },
                 },
             ],
-            quickReplies: [
-                {
-                    label: '홈',
-                    action: 'message',
-                    messageText: '홈',
-                },
-            ],
+            quickReplies: [QUICK_REPLIES.HOME],
         },
     });
 };
