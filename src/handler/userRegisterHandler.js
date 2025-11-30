@@ -23,7 +23,7 @@ const validateUserId = (userId) => {
 };
 
 export const userRegisterHandler = async (req, res) => {
-    const { header, body } = req;
+    const { body } = req;
     const kakaoId = body.userRequest.user.id;
     const user = await findUserIdByKakaoId(kakaoId);
     if (user) {

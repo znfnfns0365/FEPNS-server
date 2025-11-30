@@ -4,8 +4,7 @@ import cors from 'cors';
 import { config } from './config/config.js';
 import initServer from './init/index.js';
 import healthRouter from './routers/health.js';
-import userLookUpRouter from './routers/userLookUpRouter.js';
-import userRegisterRouter from './routers/userRegisterRouter.js';
+import userRouter from './routers/userRouter.js';
 
 const app = express();
 const server = createServer(app);
@@ -28,8 +27,7 @@ await initServer();
 
 // 라우터 설정
 app.use('/api/health', healthRouter);
-app.use('/api/users/lookup', userLookUpRouter);
-app.use('/api/users/register', userRegisterRouter);
+app.use('/api/users', userRouter);
 // 서버 시작
 server.listen(PORT, () => {
     console.log(`✅ 서버 실행 중: http://${HOST}:${PORT}`);
