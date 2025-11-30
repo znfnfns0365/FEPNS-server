@@ -40,4 +40,9 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '친구 목록',
     },
+    RETRY_DELETE_FRIEND: {
+        label: '다시 삭제하기',
+        action: 'message',
+        messageText: '친구 삭제',
+    },
 };

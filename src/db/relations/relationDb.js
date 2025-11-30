@@ -34,3 +34,12 @@ export const getCuriousAboutMe = async (userId) => {
     ]);
     return rows;
 };
+
+export const deleteRelation = async (userId, friendUserId, listType) => {
+    const [result] = await pools.fepns.query(RELATION_QUERIES.DELETE_RELATION, [
+        userId,
+        friendUserId,
+        listType,
+    ]);
+    return result;
+};
