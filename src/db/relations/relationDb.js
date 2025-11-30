@@ -26,3 +26,11 @@ export const getRelationsByListType = async (userId, listType) => {
     ]);
     return rows;
 };
+
+export const getCuriousAboutMe = async (userId) => {
+    const [rows] = await pools.fepns.query(RELATION_QUERIES.GET_CURIOUS_ABOUT_ME, [
+        userId,
+        'CURIOUS',
+    ]);
+    return rows;
+};

@@ -4,4 +4,6 @@ export const RELATION_QUERIES = {
         'SELECT list_type FROM relations WHERE user_id = ? AND friend_user_id = ? AND list_type = ?',
     GET_USERS_BY_LIST_TYPE:
         'SELECT u.user_id FROM relations r JOIN users u ON r.friend_user_id = u.id WHERE r.user_id = ? AND r.list_type = ?',
+    GET_CURIOUS_ABOUT_ME:
+        'SELECT u.user_id FROM relations r JOIN users u ON r.user_id = u.id WHERE r.friend_user_id = ? AND r.list_type = ?',
 };
