@@ -9,23 +9,6 @@ export const addRelationHandler = async (req, res) => {
     const friendId = body.action?.params?.friendId;
     const listType = body.action?.params?.listType;
 
-    // listType 검증
-    if (!listType || !VALID_LIST_TYPES.includes(listType)) {
-        return res.status(200).json({
-            version: '2.0',
-            template: {
-                outputs: [
-                    {
-                        simpleText: {
-                            text: '잘못된 목록 유형입니다.',
-                        },
-                    },
-                ],
-                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
-            },
-        });
-    }
-
     // friendId 존재 여부 확인
     const friend = await findUserByUserId(friendId);
     if (!friend) {
@@ -36,6 +19,23 @@ export const addRelationHandler = async (req, res) => {
                     {
                         simpleText: {
                             text: '존재하지 않는 아이디입니다.',
+                        },
+                    },
+                ],
+                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+            },
+        });
+    }
+
+    // listType 검증
+    if (!listType || !VALID_LIST_TYPES.includes(listType)) {
+        return res.status(200).json({
+            version: '2.0',
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: '잘못된 목록 유형입니다.',
                         },
                     },
                 ],
