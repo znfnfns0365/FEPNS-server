@@ -55,6 +55,9 @@ export const notificationViewHandler = async (req, res) => {
             quickReplies.push(QUICK_REPLIES.NEXT_NOTIFICATION);
         }
 
+        // 알림 삭제
+        quickReplies.push(QUICK_REPLIES.READ_NOTIFICATION);
+
         return res.status(200).json({
             version: '2.0',
             template: {

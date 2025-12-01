@@ -78,6 +78,9 @@ export const eventPrevHandler = async (req, res) => {
             quickReplies.push(QUICK_REPLIES.NEXT_EVENT);
         }
 
+        // 경조사 삭제
+        quickReplies.push(QUICK_REPLIES.DELETE_EVENT);
+
         return res.status(200).json({
             version: '2.0',
             template: {

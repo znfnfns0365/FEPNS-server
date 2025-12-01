@@ -77,4 +77,14 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '이전 경조사',
     },
+    DELETE_EVENT: {
+        label: '삭제하기',
+        action: 'message',
+        messageText: '경조사 삭제',
+    },
+    READ_NOTIFICATION: {
+        label: '읽음',
+        action: 'message',
+        messageText: '알림 삭제',
+    },
 };
