@@ -29,3 +29,8 @@ export const findEventsByUser = async (userId) => {
     const [rows] = await pools.fepns.query(EVENT_QUERIES.FIND_EVENTS_BY_USER, [userId]);
     return rows;
 };
+
+export const deleteEvent = async (eventId, creatorUserId) => {
+    const [result] = await pools.fepns.query(EVENT_QUERIES.DELETE_EVENT, [eventId, creatorUserId]);
+    return result;
+};
