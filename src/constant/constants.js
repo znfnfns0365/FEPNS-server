@@ -1,11 +1,18 @@
 // List Type 상수
-export const VALID_LIST_TYPES = ['SEND', 'SEND_BLOCK', 'CURIOUS', 'RECEIVE_BLOCK'];
+export const VALID_LIST_TYPES = {
+    '보내고 싶은 목록': 'SEND',
+    '보내기 싫은 목록': 'SEND_BLOCK',
+    '궁금한 목록': 'CURIOUS',
+    '받기 싫은 목록': 'RECEIVE_BLOCK',
+    '나를 궁금해 하는 목록': 'CURIOUS_ABOUT_ME',
+};
 
-export const LIST_TYPE_NAMES = {
-    SEND: '전송 리스트(Send List)',
-    SEND_BLOCK: '전송 차단 리스트(Send Block List)',
-    CURIOUS: '궁금 리스트(Curious List)',
-    RECEIVE_BLOCK: '수신 차단 리스트(Receive Block List)',
+// Event Type 상수
+export const VALID_EVENT_TYPES = {
+    결혼식: 'wedding',
+    장례식: 'funeral',
+    돌잔치: 'firstBirthday',
+    생일: 'birthday',
 };
 
 // Quick Replies 템플릿
@@ -44,5 +51,40 @@ export const QUICK_REPLIES = {
         label: '다시 삭제하기',
         action: 'message',
         messageText: '친구 삭제',
+    },
+    RETRY_CREATE_EVENT: {
+        label: '다시 등록하기',
+        action: 'message',
+        messageText: '경조사 등록',
+    },
+    NEXT_NOTIFICATION: {
+        label: '다음으로',
+        action: 'message',
+        messageText: '다음 알림',
+    },
+    PREV_NOTIFICATION: {
+        label: '이전으로',
+        action: 'message',
+        messageText: '이전 알림',
+    },
+    NEXT_EVENT: {
+        label: '다음으로',
+        action: 'message',
+        messageText: '다음 경조사',
+    },
+    PREV_EVENT: {
+        label: '이전으로',
+        action: 'message',
+        messageText: '이전 경조사',
+    },
+    DELETE_EVENT: {
+        label: '삭제하기',
+        action: 'message',
+        messageText: '경조사 삭제',
+    },
+    READ_NOTIFICATION: {
+        label: '읽음',
+        action: 'message',
+        messageText: '알림 삭제',
     },
 };

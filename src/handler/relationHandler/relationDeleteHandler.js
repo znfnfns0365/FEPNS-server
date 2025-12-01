@@ -1,16 +1,19 @@
 import { findUserByUserId } from '../../db/users/userDb.js';
 import { deleteRelation } from '../../db/relations/relationDb.js';
-import { VALID_LIST_TYPES, LIST_TYPE_NAMES, QUICK_REPLIES } from '../../constant/constants.js';
+import { VALID_LIST_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
 
 export const deleteRelationHandler = async (req, res) => {
     const { body } = req;
     const user = req.user;
 
     const friendId = body.action?.params?.friendId;
-    const listType = body.action?.params?.listType;
+    const listTypeKorean = body.action?.params?.listType; // 한글로 들어옴
+
+    // 한글 -> 영문 변환
+    const listType = VALID_LIST_TYPES[listTypeKorean];
 
     // listType 검증
-    if (!listType || !VALID_LIST_TYPES.includes(listType)) {
+    if (!listType) {
         return res.status(200).json({
             version: '2.0',
             template: {
@@ -50,14 +53,13 @@ export const deleteRelationHandler = async (req, res) => {
 
         // affectedRows가 0이면 해당 목록에 없는 경우
         if (result.affectedRows === 0) {
-            const listTypeName = LIST_TYPE_NAMES[listType];
             return res.status(200).json({
                 version: '2.0',
                 template: {
                     outputs: [
                         {
                             simpleText: {
-                                text: `${listTypeName}에 ${friendId}님이 없습니다.`,
+                                text: `${listTypeKorean}에 ${friendId}님이 없습니다.`,
                             },
                         },
                     ],
