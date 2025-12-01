@@ -9,9 +9,15 @@ export const eventCreateHandler = async (req, res) => {
 
     const eventTitle = body.action?.params?.eventTitle;
     const eventTypeKorean = body.action?.params?.eventType; // 한글로 들어옴
-    const eventDate = body.action?.params?.eventDate.value;
+    const rawEventDate = body.action?.params?.eventDate.value;
     const eventLocation = body.action?.params?.eventLocation || null;
     const eventDesc = body.action?.params?.eventDesc || null;
+
+    let eventDate = null;
+    if (rawEventDate) {
+        const parsedDate = JSON.parse(rawEventDate);
+        eventDate = parsedDate.value;
+    }
 
     // 한글 -> 영문 변환
     const eventType = VALID_EVENT_TYPES[eventTypeKorean];
