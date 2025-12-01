@@ -4,6 +4,7 @@ export const VALID_LIST_TYPES = {
     '보내기 싫은 목록': 'SEND_BLOCK',
     '궁금한 목록': 'CURIOUS',
     '받기 싫은 목록': 'RECEIVE_BLOCK',
+    '나를 궁금해 하는 목록': 'CURIOUS_ABOUT_ME',
 };
 
 // Event Type 상수
