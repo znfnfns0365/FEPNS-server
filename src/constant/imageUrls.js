@@ -11,7 +11,7 @@ const getImageUrl = (filename) => {
 export const IMAGE_URLS = {
     FEPNS_MAIN: getImageUrl('FEPNS img.png'),
     FEPNS_DEV: getImageUrl('fepns img(dev).png'),
-    FEPNS_WEDDING: getImageUrl('wedding.png'),
+    FEPNS_WEDDING: getImageUrl('wedding.jpg'),
     FEPNS_FUNERAL: getImageUrl('funeral.jpg'),
     FEPNS_FIRST_BIRTHDAY: getImageUrl('firstBirthday.png'),
     FEPNS_BIRTHDAY: getImageUrl('birthday.jpg'),

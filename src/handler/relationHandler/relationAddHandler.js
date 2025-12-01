@@ -47,9 +47,37 @@ export const addRelationHandler = async (req, res) => {
         });
     }
 
-    // SEND와 SEND_BLOCK 상호 배타적 체크
-    if (listType === 'SEND') {
-        const conflicting = await checkConflictingRelation(user.id, friend.id, 'SEND_BLOCK');
+    // 상호 배타적 관계 체크
+    const conflictMap = {
+        SEND: {
+            conflictType: 'SEND_BLOCK',
+            conflictName: '보내기 싫은 목록',
+            currentName: '보내고 싶은 목록',
+        },
+        SEND_BLOCK: {
+            conflictType: 'SEND',
+            conflictName: '보내고 싶은 목록',
+            currentName: '보내기 싫은 목록',
+        },
+        CURIOUS: {
+            conflictType: 'RECEIVE_BLOCK',
+            conflictName: '받기 싫은 목록',
+            currentName: '궁금한 목록',
+        },
+        RECEIVE_BLOCK: {
+            conflictType: 'CURIOUS',
+            conflictName: '궁금한 목록',
+            currentName: '받기 싫은 목록',
+        },
+    };
+
+    const conflict = conflictMap[listType];
+    if (conflict) {
+        const conflicting = await checkConflictingRelation(
+            user.id,
+            friend.id,
+            conflict.conflictType,
+        );
         if (conflicting) {
             return res.status(200).json({
                 version: '2.0',
@@ -57,24 +85,7 @@ export const addRelationHandler = async (req, res) => {
                     outputs: [
                         {
                             simpleText: {
-                                text: `'${friendId}'님은 이미 보내기 싫은 목록에 있습니다.\n보내고 싶은 목록에 추가하려면 먼저 보내기 싫은 목록에서 제거해주세요.`,
-                            },
-                        },
-                    ],
-                    quickReplies: [QUICK_REPLIES.HOME],
-                },
-            });
-        }
-    } else if (listType === 'SEND_BLOCK') {
-        const conflicting = await checkConflictingRelation(user.id, friend.id, 'SEND');
-        if (conflicting) {
-            return res.status(200).json({
-                version: '2.0',
-                template: {
-                    outputs: [
-                        {
-                            simpleText: {
-                                text: `'${friendId}'님은 이미 보내고 싶은 목록에 있습니다.\n보내기 싫은 목록에 추가하려면 먼저 보내고 싶은 목록에서 제거해주세요.`,
+                                text: `'${friendId}'님은 이미 ${conflict.conflictName}에 있습니다.\n${conflict.currentName}에 추가하려면 먼저 ${conflict.conflictName}에서 제거해주세요.`,
                             },
                         },
                     ],
