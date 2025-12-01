@@ -6,6 +6,7 @@ import initServer from './init/index.js';
 import healthRouter from './routers/health.js';
 import userRouter from './routers/userRouter.js';
 import relationRouter from './routers/relationRouter.js';
+import eventRouter from './routers/eventRouter.js';
 
 const app = express();
 const server = createServer(app);
@@ -30,6 +31,8 @@ await initServer();
 app.use('/api/health', healthRouter);
 app.use('/api/users', userRouter);
 app.use('/api/relations', relationRouter);
+app.use('/api/events', eventRouter);
+
 // 서버 시작
 server.listen(PORT, () => {
     console.log(`✅ 서버 실행 중: http://${HOST}:${PORT}`);
