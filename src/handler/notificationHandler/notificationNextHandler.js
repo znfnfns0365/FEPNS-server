@@ -1,7 +1,7 @@
 import { findUserSession, updateCurrentPage } from '../../session/user.js';
 import { findEventById } from '../../db/events/eventDb.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
-import { IMAGE_URLS } from '../../constant/imageUrls.js';
+import { getEventThumbnail } from '../../constant/imageUrls.js';
 
 export const notificationNextHandler = async (req, res) => {
     const user = req.user;
@@ -87,7 +87,7 @@ export const notificationNextHandler = async (req, res) => {
                             title: event.event_title,
                             description: description,
                             thumbnail: {
-                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                                imageUrl: getEventThumbnail(event.event_type),
                             },
                         },
                     },

@@ -2,7 +2,7 @@ import { deleteNotification } from '../../db/notifications/notificationDb.js';
 import { findEventById } from '../../db/events/eventDb.js';
 import { findUserSession, clearUserSession } from '../../session/user.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
-import { IMAGE_URLS } from '../../constant/imageUrls.js';
+import { getEventThumbnail } from '../../constant/imageUrls.js';
 
 export const notificationDeleteHandler = async (req, res) => {
     const user = req.user;
@@ -143,7 +143,7 @@ export const notificationDeleteHandler = async (req, res) => {
                             title: event.event_title,
                             description: description,
                             thumbnail: {
-                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                                imageUrl: getEventThumbnail(event.event_type),
                             },
                         },
                     },
