@@ -1,5 +1,6 @@
 import { findUserSession, updateCurrentPage } from '../../session/user.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
+import { IMAGE_URLS } from '../../constant/imageUrls.js';
 
 export const eventPrevHandler = async (req, res) => {
     const user = req.user;
@@ -38,7 +39,7 @@ export const eventPrevHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.HOME, QUICK_REPLIES.NEXT_NOTIFICATION],
+                    quickReplies: [QUICK_REPLIES.HOME, QUICK_REPLIES.NEXT_EVENT],
                 },
             });
         }
@@ -67,14 +68,14 @@ export const eventPrevHandler = async (req, res) => {
 
         // 첫 페이지가 아니면 "이전" 추가
         if (prevPage > 0) {
-            quickReplies.push(QUICK_REPLIES.PREV_NOTIFICATION);
+            quickReplies.push(QUICK_REPLIES.PREV_EVENT);
         }
 
         quickReplies.push(QUICK_REPLIES.HOME);
 
         // 마지막 페이지가 아니면 "다음" 추가
         if (prevPage < events.length - 1) {
-            quickReplies.push(QUICK_REPLIES.NEXT_NOTIFICATION);
+            quickReplies.push(QUICK_REPLIES.NEXT_EVENT);
         }
 
         return res.status(200).json({
@@ -85,6 +86,9 @@ export const eventPrevHandler = async (req, res) => {
                         basicCard: {
                             title: currentEvent.event_title,
                             description: description,
+                            thumbnail: {
+                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                            },
                         },
                     },
                     {

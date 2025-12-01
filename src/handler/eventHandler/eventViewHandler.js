@@ -1,6 +1,7 @@
 import { findEventsByUser } from '../../db/events/eventDb.js';
 import { initEventSession } from '../../session/user.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
+import { IMAGE_URLS } from '../../constant/imageUrls.js';
 
 export const eventViewHandler = async (req, res) => {
     const user = req.user;
@@ -33,7 +34,9 @@ export const eventViewHandler = async (req, res) => {
 
         // 날짜 포맷팅
         const eventDate = new Date(currentEvent.event_date);
-        const formattedDate = `${eventDate.getFullYear()}년 ${eventDate.getMonth() + 1}월 ${eventDate.getDate()}일`;
+        const formattedDate = `${eventDate.getFullYear()}년 ${
+            eventDate.getMonth() + 1
+        }월 ${eventDate.getDate()}일`;
 
         // 기본 카드 설명
         let description = `일시: ${formattedDate}`;
@@ -47,7 +50,7 @@ export const eventViewHandler = async (req, res) => {
         // QuickReplies 생성 (첫 페이지는 "다음"만)
         const quickReplies = [QUICK_REPLIES.HOME];
         if (events.length > 1) {
-            quickReplies.push(QUICK_REPLIES.NEXT_NOTIFICATION);
+            quickReplies.push(QUICK_REPLIES.NEXT_EVENT);
         }
 
         return res.status(200).json({
@@ -58,6 +61,9 @@ export const eventViewHandler = async (req, res) => {
                         basicCard: {
                             title: currentEvent.event_title,
                             description: description,
+                            thumbnail: {
+                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                            },
                         },
                     },
                     {
@@ -86,4 +92,3 @@ export const eventViewHandler = async (req, res) => {
         });
     }
 };
-

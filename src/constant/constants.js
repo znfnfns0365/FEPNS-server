@@ -67,4 +67,14 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '이전 알림',
     },
+    NEXT_EVENT: {
+        label: '다음으로',
+        action: 'message',
+        messageText: '다음 경조사',
+    },
+    PREV_EVENT: {
+        label: '이전으로',
+        action: 'message',
+        messageText: '이전 경조사',
+    },
 };
