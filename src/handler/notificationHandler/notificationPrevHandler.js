@@ -1,6 +1,7 @@
 import { findUserSession, updateCurrentPage } from '../../session/user.js';
 import { findEventById } from '../../db/events/eventDb.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
+import { IMAGE_URLS } from '../../constant/imageUrls.js';
 
 export const notificationPrevHandler = async (req, res) => {
     const user = req.user;
@@ -53,7 +54,9 @@ export const notificationPrevHandler = async (req, res) => {
 
         // 날짜 포맷팅
         const eventDate = new Date(event.event_date);
-        const formattedDate = `${eventDate.getFullYear()}년 ${eventDate.getMonth() + 1}월 ${eventDate.getDate()}일`;
+        const formattedDate = `${eventDate.getFullYear()}년 ${
+            eventDate.getMonth() + 1
+        }월 ${eventDate.getDate()}일`;
 
         // 기본 카드 설명
         let description = `일시: ${formattedDate}`;
@@ -87,6 +90,9 @@ export const notificationPrevHandler = async (req, res) => {
                         basicCard: {
                             title: event.event_title,
                             description: description,
+                            thumbnail: {
+                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                            },
                         },
                     },
                     {
@@ -115,4 +121,3 @@ export const notificationPrevHandler = async (req, res) => {
         });
     }
 };
-

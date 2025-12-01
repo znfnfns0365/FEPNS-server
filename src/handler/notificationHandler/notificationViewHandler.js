@@ -2,6 +2,7 @@ import { findNotificationsByUser } from '../../db/notifications/notificationDb.j
 import { findEventById } from '../../db/events/eventDb.js';
 import { initNotificationSession, findUserSession } from '../../session/user.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
+import { IMAGE_URLS } from '../../constant/imageUrls.js';
 
 export const notificationViewHandler = async (req, res) => {
     const user = req.user;
@@ -62,6 +63,9 @@ export const notificationViewHandler = async (req, res) => {
                         basicCard: {
                             title: event.event_title,
                             description: description,
+                            thumbnail: {
+                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                            },
                         },
                     },
                     {

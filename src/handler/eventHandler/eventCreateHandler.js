@@ -2,6 +2,7 @@ import { insertEvent } from '../../db/events/eventDb.js';
 import { getNotificationTargets } from '../../db/relations/relationDb.js';
 import { insertNotification } from '../../db/notifications/notificationDb.js';
 import { VALID_EVENT_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
+import { IMAGE_URLS } from '../../constant/imageUrls.js';
 
 export const eventCreateHandler = async (req, res) => {
     const { body } = req;
@@ -181,6 +182,9 @@ export const eventCreateHandler = async (req, res) => {
                         basicCard: {
                             title: `[전송 완료] ${eventTitle}`,
                             description: description,
+                            thumbnail: {
+                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                            },
                         },
                     },
                 ],
