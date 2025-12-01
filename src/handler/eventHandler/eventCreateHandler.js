@@ -1,17 +1,20 @@
 import { insertEvent } from '../../db/events/eventDb.js';
 import { getNotificationTargets } from '../../db/relations/relationDb.js';
 import { insertNotification } from '../../db/notifications/notificationDb.js';
-import { VALID_EVENT_TYPES, EVENT_TYPE_NAMES, QUICK_REPLIES } from '../../constant/constants.js';
+import { VALID_EVENT_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
 
 export const eventCreateHandler = async (req, res) => {
     const { body } = req;
     const user = req.user;
 
     const eventTitle = body.action?.params?.eventTitle;
-    const eventType = body.action?.params?.eventType;
+    const eventTypeKorean = body.action?.params?.eventType; // 한글로 들어옴
     const eventDate = body.action?.params?.eventDate;
     const eventLocation = body.action?.params?.eventLocation || null;
     const eventDesc = body.action?.params?.eventDesc || null;
+
+    // 한글 -> 영문 변환
+    const eventType = VALID_EVENT_TYPES[eventTypeKorean];
 
     // eventTitle 검증
     if (!eventTitle || typeof eventTitle !== 'string' || eventTitle.trim().length === 0) {
@@ -47,7 +50,7 @@ export const eventCreateHandler = async (req, res) => {
     }
 
     // eventType 검증
-    if (!eventType || !VALID_EVENT_TYPES.includes(eventType)) {
+    if (!eventType) {
         return res.status(200).json({
             version: '2.0',
             template: {
@@ -137,8 +140,7 @@ export const eventCreateHandler = async (req, res) => {
         const targets = await getNotificationTargets(user.id);
 
         // 알림 생성
-        const eventTypeName = EVENT_TYPE_NAMES[eventType];
-        const notificationTitle = `${user.user_id}님의 ${eventTypeName} 소식`;
+        const notificationTitle = `${user.user_id}님의 ${eventTypeKorean} 소식`;
         let notificationDesc = `${eventTitle}\n일시: ${formattedDate}`;
         if (eventLocation) {
             notificationDesc += `\n장소: ${eventLocation}`;

@@ -8,13 +8,11 @@ export const VALID_LIST_TYPES = {
 };
 
 // Event Type 상수
-export const VALID_EVENT_TYPES = ['wedding', 'funeral', 'firstBirthday', 'birthday'];
-
-export const EVENT_TYPE_NAMES = {
-    wedding: '결혼',
-    funeral: '장례',
-    firstBirthday: '돌잔치',
-    birthday: '생일',
+export const VALID_EVENT_TYPES = {
+    결혼식: 'wedding',
+    장례식: 'funeral',
+    돌잔치: 'firstBirthday',
+    생일: 'birthday',
 };
 
 // Quick Replies 템플릿
