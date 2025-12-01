@@ -16,7 +16,32 @@ export const initNotificationSession = (userId, notifications) => {
     // 새 세션 생성
     const session = {
         userId: userId,
+        type: 'notification', // 세션 타입
         notifications: notifications,
+        currentPage: 0, // 0-based index
+        timer: null,
+    };
+
+    // 10분 타이머 설정
+    session.timer = setTimeout(() => {
+        console.log(`⏰ 세션 타임아웃: userId=${userId}`);
+        clearUserSession(userId);
+    }, SESSION_TIMEOUT);
+
+    userSessions.push(session);
+    return session;
+};
+
+// 사용자 경조사 세션 초기화
+export const initEventSession = (userId, events) => {
+    // 기존 세션 제거 (타이머 포함)
+    clearUserSession(userId);
+
+    // 새 세션 생성
+    const session = {
+        userId: userId,
+        type: 'event', // 세션 타입
+        events: events,
         currentPage: 0, // 0-based index
         timer: null,
     };
