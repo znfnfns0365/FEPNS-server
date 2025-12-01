@@ -9,7 +9,7 @@ export const eventCreateHandler = async (req, res) => {
 
     const eventTitle = body.action?.params?.eventTitle;
     const eventTypeKorean = body.action?.params?.eventType; // 한글로 들어옴
-    const rawEventDate = body.action?.params?.eventDate.value;
+    const rawEventDate = body.action?.params?.eventDate;
     const eventLocation = body.action?.params?.eventLocation || null;
     const eventDesc = body.action?.params?.eventDesc || null;
 
