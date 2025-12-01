@@ -9,7 +9,6 @@ const relationRouter = Router();
 
 relationRouter.post('/add', findUser, addRelationHandler);
 relationRouter.post('/observers', findUser, relationObserversHandler);
-relationRouter.post('/curiousAboutMe', findUser, relationCuriousAboutMeHandler);
 relationRouter.post('/delete', findUser, deleteRelationHandler);
 
 export default relationRouter;

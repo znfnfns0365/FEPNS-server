@@ -1,5 +1,6 @@
 import { getRelationsByListType } from '../../db/relations/relationDb.js';
 import { VALID_LIST_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
+import { relationCuriousAboutMeHandler } from './relationCuriousAboutMeHandler.js';
 
 export const relationObserversHandler = async (req, res) => {
     const { body } = req;
@@ -25,6 +26,12 @@ export const relationObserversHandler = async (req, res) => {
                 quickReplies: [QUICK_REPLIES.RETRY_LIST_LOOKUP],
             },
         });
+    }
+
+    // 나를 궁금해 하는 목록 조회면 나를 궁금해 하는 목록 조회 핸들러 호출
+    if (listType === 'CURIOUS_ABOUT_ME') {
+        relationCuriousAboutMeHandler(req, res);
+        return;
     }
 
     try {
