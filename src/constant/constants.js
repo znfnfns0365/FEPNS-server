@@ -60,11 +60,11 @@ export const QUICK_REPLIES = {
     NEXT_NOTIFICATION: {
         label: '다음으로',
         action: 'message',
-        messageText: '다음 알람',
+        messageText: '다음 알림',
     },
     PREV_NOTIFICATION: {
         label: '이전으로',
         action: 'message',
-        messageText: '이전 알람',
+        messageText: '이전 알림',
     },
 };
