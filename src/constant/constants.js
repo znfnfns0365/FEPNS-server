@@ -57,4 +57,14 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '경조사 등록',
     },
+    NEXT_NOTIFICATION: {
+        label: '다음으로',
+        action: 'message',
+        messageText: '다음 알람',
+    },
+    PREV_NOTIFICATION: {
+        label: '이전으로',
+        action: 'message',
+        messageText: '이전 알람',
+    },
 };

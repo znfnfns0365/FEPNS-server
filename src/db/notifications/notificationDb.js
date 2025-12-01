@@ -27,5 +27,3 @@ export const markAsSent = async (notificationId) => {
     const [result] = await pools.fepns.query(NOTIFICATION_QUERIES.MARK_AS_SENT, [notificationId]);
     return result;
 };
-
-
