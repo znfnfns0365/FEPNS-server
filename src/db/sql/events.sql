@@ -2,7 +2,7 @@ CREATE TABLE events (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     creator_user_id BIGINT UNSIGNED NOT NULL,
     event_title VARCHAR(200) NOT NULL,
-    event_type ENUM('wedding','funeral','firstBirthday','birthday') NOT NULL,
+    event_type VARCHAR(20) NOT NULL,
     event_date DATE NOT NULL,
     event_location VARCHAR(255),
     event_desc TEXT,

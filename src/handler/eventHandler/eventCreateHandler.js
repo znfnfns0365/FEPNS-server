@@ -21,7 +21,7 @@ export const eventCreateHandler = async (req, res) => {
     }
 
     // 한글 -> 영문 변환
-    const eventType = VALID_EVENT_TYPES[eventTypeKorean];
+    let eventType = VALID_EVENT_TYPES[eventTypeKorean];
 
     // eventTitle 검증
     if (!eventTitle || typeof eventTitle !== 'string' || eventTitle.trim().length === 0) {
@@ -56,21 +56,9 @@ export const eventCreateHandler = async (req, res) => {
         });
     }
 
-    // eventType 검증
+    // eventType 검증 >> 직접 입력한 경우 그대로 저장
     if (!eventType) {
-        return res.status(200).json({
-            version: '2.0',
-            template: {
-                outputs: [
-                    {
-                        simpleText: {
-                            text: '잘못된 경조사 유형입니다.',
-                        },
-                    },
-                ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
-            },
-        });
+        eventType = eventTypeKorean;
     }
 
     // eventDate 검증
