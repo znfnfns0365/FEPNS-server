@@ -24,6 +24,9 @@ app.use(
     }),
 );
 
+// 정적 파일 제공 (이미지)
+app.use('/images', express.static('src/image'));
+
 // init(DB 연동)
 await initServer();
 
