@@ -23,8 +23,8 @@ export const findUser = async (req, res, next) => {
     req.user = user;
 
     // 알림 API가 아닌 다른 API 호출 시 세션 삭제
-    const path = req.path;
-    if (!path.includes('/notifications')) {
+    const fullPath = req.baseUrl + req.path;
+    if (!fullPath.includes('/notifications')) {
         clearUserSession(user.id);
     }
 
