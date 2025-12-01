@@ -33,7 +33,9 @@ export const eventViewHandler = async (req, res) => {
 
         // 날짜 포맷팅
         const eventDate = new Date(currentEvent.event_date);
-        const formattedDate = `${eventDate.getFullYear()}년 ${eventDate.getMonth() + 1}월 ${eventDate.getDate()}일`;
+        const formattedDate = `${eventDate.getFullYear()}년 ${
+            eventDate.getMonth() + 1
+        }월 ${eventDate.getDate()}일`;
 
         // 기본 카드 설명
         let description = `일시: ${formattedDate}`;
@@ -47,7 +49,7 @@ export const eventViewHandler = async (req, res) => {
         // QuickReplies 생성 (첫 페이지는 "다음"만)
         const quickReplies = [QUICK_REPLIES.HOME];
         if (events.length > 1) {
-            quickReplies.push(QUICK_REPLIES.NEXT_NOTIFICATION);
+            quickReplies.push(QUICK_REPLIES.NEXT_EVENT);
         }
 
         return res.status(200).json({
@@ -86,4 +88,3 @@ export const eventViewHandler = async (req, res) => {
         });
     }
 };
-

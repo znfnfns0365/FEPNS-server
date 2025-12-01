@@ -38,7 +38,7 @@ export const eventNextHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.PREV_NOTIFICATION, QUICK_REPLIES.HOME],
+                    quickReplies: [QUICK_REPLIES.PREV_EVENT, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -65,11 +65,11 @@ export const eventNextHandler = async (req, res) => {
         }
 
         // QuickReplies 생성
-        const quickReplies = [QUICK_REPLIES.PREV_NOTIFICATION, QUICK_REPLIES.HOME];
+        const quickReplies = [QUICK_REPLIES.PREV_EVENT, QUICK_REPLIES.HOME];
 
         // 마지막 페이지가 아니면 "다음" 추가
         if (nextPage < events.length - 1) {
-            quickReplies.push(QUICK_REPLIES.NEXT_NOTIFICATION);
+            quickReplies.push(QUICK_REPLIES.NEXT_EVENT);
         }
 
         return res.status(200).json({
