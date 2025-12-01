@@ -1,14 +1,17 @@
 import { getRelationsByListType } from '../../db/relations/relationDb.js';
-import { VALID_LIST_TYPES, LIST_TYPE_NAMES, QUICK_REPLIES } from '../../constant/constants.js';
+import { VALID_LIST_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
 
 export const relationObserversHandler = async (req, res) => {
     const { body } = req;
     const user = req.user;
 
-    const listType = body.action?.params?.listType;
+    const listTypeKorean = body.action?.params?.listType; // 한글로 들어옴
+
+    // 한글 -> 영문 변환
+    const listType = VALID_LIST_TYPES[listTypeKorean];
 
     // listType 검증
-    if (!listType || !VALID_LIST_TYPES.includes(listType)) {
+    if (!listType) {
         return res.status(200).json({
             version: '2.0',
             template: {
@@ -26,7 +29,6 @@ export const relationObserversHandler = async (req, res) => {
 
     try {
         const relations = await getRelationsByListType(user.id, listType);
-        const listTypeName = LIST_TYPE_NAMES[listType];
 
         if (relations.length === 0) {
             return res.status(200).json({
@@ -35,7 +37,7 @@ export const relationObserversHandler = async (req, res) => {
                     outputs: [
                         {
                             simpleText: {
-                                text: `${listTypeName}이(가) 비어있습니다.`,
+                                text: `${listTypeKorean}이(가) 비어있습니다.`,
                             },
                         },
                     ],
@@ -55,7 +57,7 @@ export const relationObserversHandler = async (req, res) => {
                 outputs: [
                     {
                         simpleText: {
-                            text: `📋 ${listTypeName}\n총 ${relations.length}명\n\n${friendListText}`,
+                            text: `📋 ${listTypeKorean}\n총 ${relations.length}명\n\n${friendListText}`,
                         },
                     },
                 ],

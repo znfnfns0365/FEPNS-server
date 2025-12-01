@@ -1,13 +1,16 @@
 import { findUserByUserId } from '../../db/users/userDb.js';
 import { insertRelation, checkConflictingRelation } from '../../db/relations/relationDb.js';
-import { VALID_LIST_TYPES, LIST_TYPE_NAMES, QUICK_REPLIES } from '../../constant/constants.js';
+import { VALID_LIST_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
 
 export const addRelationHandler = async (req, res) => {
     const { body } = req;
     const user = req.user;
 
     const friendId = body.action?.params?.friendId;
-    const listType = body.action?.params?.listType;
+    const listTypeKorean = body.action?.params?.listType; // 한글로 들어옴
+
+    // 한글 -> 영문 변환
+    const listType = VALID_LIST_TYPES[listTypeKorean];
 
     // friendId 존재 여부 확인
     const friend = await findUserByUserId(friendId);
@@ -28,7 +31,7 @@ export const addRelationHandler = async (req, res) => {
     }
 
     // listType 검증
-    if (!listType || !VALID_LIST_TYPES.includes(listType)) {
+    if (!listType) {
         return res.status(200).json({
             version: '2.0',
             template: {
@@ -54,7 +57,7 @@ export const addRelationHandler = async (req, res) => {
                     outputs: [
                         {
                             simpleText: {
-                                text: `'${friendId}'님은 이미 전송 차단 리스트에 있습니다.\n전송 리스트에 추가하려면 먼저 전송 차단 리스트에서 제거해주세요.`,
+                                text: `'${friendId}'님은 이미 보내기 싫은 목록에 있습니다.\n보내고 싶은 목록에 추가하려면 먼저 보내기 싫은 목록에서 제거해주세요.`,
                             },
                         },
                     ],
@@ -71,7 +74,7 @@ export const addRelationHandler = async (req, res) => {
                     outputs: [
                         {
                             simpleText: {
-                                text: `'${friendId}'님은 이미 전송 리스트에 있습니다.\n전송 차단 리스트에 추가하려면 먼저 전송 리스트에서 제거해주세요.`,
+                                text: `'${friendId}'님은 이미 보내고 싶은 목록에 있습니다.\n보내기 싫은 목록에 추가하려면 먼저 보내고 싶은 목록에서 제거해주세요.`,
                             },
                         },
                     ],
@@ -85,7 +88,6 @@ export const addRelationHandler = async (req, res) => {
     try {
         // curious 관계라면 관계 추가 전에 조회 반대로 해서 존재 여부 확인
         await insertRelation(user.id, friend.id, listType);
-        const listTypeName = LIST_TYPE_NAMES[listType];
 
         // listType에 따른 설명 메시지
         let description = '';
@@ -94,13 +96,13 @@ export const addRelationHandler = async (req, res) => {
                 description = `이제 경조사를 올리면 ${friendId}님에게 알림이 전달됩니다.`;
                 break;
             case 'SEND_BLOCK':
-                description = `${friendId}님이 나를 궁금 리스트에 추가해놨어도 경조사를 전송하지 않습니다.`;
+                description = `${friendId}님이 나를 궁금한 목록에 추가해놨어도 경조사를 전송하지 않습니다.`;
                 break;
             case 'CURIOUS':
-                description = `${friendId}님의 전송 리스트에 없어도 ${friendId}님의 경조사 소식을 알 수 있습니다.`;
+                description = `${friendId}님의 보내고 싶은 목록에 없어도 ${friendId}님의 경조사 소식을 알 수 있습니다.`;
                 break;
             case 'RECEIVE_BLOCK':
-                description = `${friendId}님이 나를 전송 리스트에 넣어놓고 경조사를 생성해도 알림을 받지 않습니다.`;
+                description = `${friendId}님이 나를 보내고 싶은 목록에 넣어놓고 경조사를 생성해도 알림을 받지 않습니다.`;
                 break;
         }
 
@@ -110,7 +112,7 @@ export const addRelationHandler = async (req, res) => {
                 outputs: [
                     {
                         simpleText: {
-                            text: `✅ '${friendId}'님을 ${listTypeName}에 추가했습니다.\n${description}`,
+                            text: `✅ '${friendId}'님을 ${listTypeKorean}에 추가했습니다.\n${description}`,
                         },
                     },
                 ],
@@ -125,7 +127,7 @@ export const addRelationHandler = async (req, res) => {
                     outputs: [
                         {
                             simpleText: {
-                                text: `이미 ${LIST_TYPE_NAMES[listType]}에 추가된 친구입니다.`,
+                                text: `이미 ${listTypeKorean}에 추가된 친구입니다.`,
                             },
                         },
                     ],
