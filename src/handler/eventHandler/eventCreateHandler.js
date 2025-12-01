@@ -35,7 +35,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -51,7 +51,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -73,7 +73,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -91,7 +91,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -109,7 +109,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -193,7 +193,7 @@ export const eventCreateHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                    quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -208,7 +208,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }

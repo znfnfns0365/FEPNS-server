@@ -23,7 +23,7 @@ export const relationObserversHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_LIST_LOOKUP],
+                quickReplies: [QUICK_REPLIES.RETRY_LIST_LOOKUP, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -83,7 +83,7 @@ export const relationObserversHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_LIST_LOOKUP],
+                quickReplies: [QUICK_REPLIES.RETRY_LIST_LOOKUP, QUICK_REPLIES.HOME],
             },
         });
     }

@@ -25,7 +25,7 @@ export const addRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -42,7 +42,7 @@ export const addRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -142,7 +142,7 @@ export const addRelationHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+                    quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -159,7 +159,7 @@ export const addRelationHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+                    quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -175,7 +175,7 @@ export const addRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_ADD_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }
