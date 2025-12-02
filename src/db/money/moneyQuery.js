@@ -56,3 +56,9 @@ export const SELECT_MONEY_LOGS_BY_TARGET_NAME = `
     WHERE user_id = ? AND target_name = ?
     ORDER BY event_date DESC, created_at DESC
 `;
+
+// 부조금 기록 삭제 (ID로)
+export const DELETE_MONEY_LOG_BY_ID = `
+    DELETE FROM money_logs
+    WHERE id = ? AND user_id = ?
+`;

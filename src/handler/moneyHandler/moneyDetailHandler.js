@@ -6,6 +6,7 @@ import {
 } from '../../db/money/moneyDb.js';
 import { findUserByUserId } from '../../db/users/userDb.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
+import { initMoneySession } from '../../session/user.js';
 
 // 영어인지 한글인지 판단하는 함수
 const isEnglish = (str) => {
@@ -159,6 +160,9 @@ export const moneyDetailHandler = async (req, res) => {
         listText += `\n총 보낸 돈: ${totalGiven.toLocaleString()}원\n`;
         listText += `총 받은 돈: ${totalReceived.toLocaleString()}원`;
 
+        // 세션에 부조금 목록과 대상자 이름 저장
+        initMoneySession(user.id, logs, targetName);
+        console.log(`id: ${user.id} 유저가 부조금 상세 조회 세션 생성`);
         return res.status(200).json({
             version: '2.0',
             template: {
@@ -169,7 +173,7 @@ export const moneyDetailHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.HOME],
+                quickReplies: [QUICK_REPLIES.DELETE_MONEY, QUICK_REPLIES.HOME],
             },
         });
     } catch (error) {

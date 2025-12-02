@@ -14,9 +14,16 @@ export const moneyAddHandler = async (req, res) => {
     const friendId = body.action?.params?.friendId;
     const logType = body.action?.params?.logType;
     const category = body.action?.params?.category;
-    const eventDate = body.action?.params?.eventDate;
+    const rawEventDate = body.action?.params?.eventDate;
     const amount = body.action?.params?.amount;
     const memo = body.action?.params?.memo || null;
+
+    // 날짜 파싱
+    let eventDate = null;
+    if (rawEventDate) {
+        const parsedDate = JSON.parse(rawEventDate);
+        eventDate = parsedDate.value;
+    }
 
     // 필수 파라미터 검증
     if (!friendId) {
@@ -205,4 +212,3 @@ export const moneyAddHandler = async (req, res) => {
         });
     }
 };
-

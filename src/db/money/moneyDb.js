@@ -5,6 +5,7 @@ import {
     SELECT_MONEY_OBSERVERS_BY_NAME,
     SELECT_MONEY_LOGS_BY_TARGET_USER_ID,
     SELECT_MONEY_LOGS_BY_TARGET_NAME,
+    DELETE_MONEY_LOG_BY_ID,
 } from './moneyQuery.js';
 
 // 부조금 기록 생성
@@ -56,4 +57,10 @@ export const getMoneyLogsByTargetUserId = async (userId, targetUserId) => {
 export const getMoneyLogsByTargetName = async (userId, targetName) => {
     const [rows] = await pools.fepns.query(SELECT_MONEY_LOGS_BY_TARGET_NAME, [userId, targetName]);
     return rows;
+};
+
+// 부조금 기록 삭제
+export const deleteMoneyLogById = async (moneyLogId, userId) => {
+    const [result] = await pools.fepns.query(DELETE_MONEY_LOG_BY_ID, [moneyLogId, userId]);
+    return result;
 };

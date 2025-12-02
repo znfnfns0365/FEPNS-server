@@ -97,4 +97,9 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '부조금 기록',
     },
+    DELETE_MONEY: {
+        label: '삭제하기',
+        action: 'message',
+        messageText: '부조금 삭제',
+    },
 };
