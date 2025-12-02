@@ -1,7 +1,7 @@
 import { deleteEvent } from '../../db/events/eventDb.js';
 import { findUserSession, clearUserSession } from '../../session/user.js';
 import { QUICK_REPLIES } from '../../constant/constants.js';
-import { IMAGE_URLS } from '../../constant/imageUrls.js';
+import { getEventThumbnail } from '../../constant/imageUrls.js';
 
 export const eventDeleteHandler = async (req, res) => {
     const user = req.user;
@@ -141,7 +141,7 @@ export const eventDeleteHandler = async (req, res) => {
                             title: nextEvent.event_title,
                             description: description,
                             thumbnail: {
-                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                                imageUrl: getEventThumbnail(nextEvent.event_type),
                             },
                         },
                     },

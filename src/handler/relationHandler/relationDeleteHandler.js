@@ -24,7 +24,7 @@ export const deleteRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -42,7 +42,7 @@ export const deleteRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -63,7 +63,7 @@ export const deleteRelationHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND],
+                    quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -78,6 +78,7 @@ export const deleteRelationHandler = async (req, res) => {
                         },
                     },
                 ],
+                quickReplies: [QUICK_REPLIES.HOME],
             },
         });
     } catch (error) {
@@ -92,7 +93,7 @@ export const deleteRelationHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND],
+                quickReplies: [QUICK_REPLIES.RETRY_DELETE_FRIEND, QUICK_REPLIES.HOME],
             },
         });
     }

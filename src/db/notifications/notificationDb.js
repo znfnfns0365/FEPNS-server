@@ -18,16 +18,6 @@ export const findNotificationsByUser = async (userId) => {
     return rows;
 };
 
-export const markAsRead = async (notificationId) => {
-    const [result] = await pools.fepns.query(NOTIFICATION_QUERIES.MARK_AS_READ, [notificationId]);
-    return result;
-};
-
-export const markAsSent = async (notificationId) => {
-    const [result] = await pools.fepns.query(NOTIFICATION_QUERIES.MARK_AS_SENT, [notificationId]);
-    return result;
-};
-
 export const deleteNotification = async (notificationId, userId) => {
     const [result] = await pools.fepns.query(NOTIFICATION_QUERIES.DELETE_NOTIFICATION, [
         notificationId,

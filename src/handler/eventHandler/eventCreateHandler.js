@@ -2,7 +2,7 @@ import { insertEvent } from '../../db/events/eventDb.js';
 import { getNotificationTargets } from '../../db/relations/relationDb.js';
 import { insertNotification } from '../../db/notifications/notificationDb.js';
 import { VALID_EVENT_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
-import { IMAGE_URLS } from '../../constant/imageUrls.js';
+import { getEventThumbnail } from '../../constant/imageUrls.js';
 
 export const eventCreateHandler = async (req, res) => {
     const { body } = req;
@@ -21,7 +21,7 @@ export const eventCreateHandler = async (req, res) => {
     }
 
     // 한글 -> 영문 변환
-    const eventType = VALID_EVENT_TYPES[eventTypeKorean];
+    let eventType = VALID_EVENT_TYPES[eventTypeKorean];
 
     // eventTitle 검증
     if (!eventTitle || typeof eventTitle !== 'string' || eventTitle.trim().length === 0) {
@@ -35,7 +35,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -51,26 +51,14 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
 
-    // eventType 검증
+    // eventType 검증 >> 직접 입력한 경우 그대로 저장
     if (!eventType) {
-        return res.status(200).json({
-            version: '2.0',
-            template: {
-                outputs: [
-                    {
-                        simpleText: {
-                            text: '잘못된 경조사 유형입니다.',
-                        },
-                    },
-                ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
-            },
-        });
+        eventType = eventTypeKorean;
     }
 
     // eventDate 검증
@@ -85,7 +73,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -103,7 +91,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -121,7 +109,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -183,7 +171,7 @@ export const eventCreateHandler = async (req, res) => {
                             title: `[전송 완료] ${eventTitle}`,
                             description: description,
                             thumbnail: {
-                                imageUrl: IMAGE_URLS.FEPNS_MAIN,
+                                imageUrl: getEventThumbnail(eventType),
                             },
                         },
                     },
@@ -205,7 +193,7 @@ export const eventCreateHandler = async (req, res) => {
                             },
                         },
                     ],
-                    quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                    quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
                 },
             });
         }
@@ -220,7 +208,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_EVENT, QUICK_REPLIES.HOME],
             },
         });
     }

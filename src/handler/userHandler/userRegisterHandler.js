@@ -56,7 +56,7 @@ export const userRegisterHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID, QUICK_REPLIES.HOME],
             },
         });
     }
@@ -73,7 +73,7 @@ export const userRegisterHandler = async (req, res) => {
                         },
                     },
                 ],
-                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID],
+                quickReplies: [QUICK_REPLIES.RETRY_CREATE_ID, QUICK_REPLIES.HOME],
             },
         });
     }
