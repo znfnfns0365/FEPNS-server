@@ -24,7 +24,10 @@ export const findUser = async (req, res, next) => {
 
     // 알림/경조사 조회 API가 아닌 다른 API 호출 시 세션 삭제
     const fullPath = req.baseUrl + req.path;
-    const isSessionAPI = fullPath.includes('/notifications') || fullPath.includes('/events');
+    const isSessionAPI =
+        fullPath.includes('/notifications') ||
+        fullPath.includes('/events') ||
+        fullPath.includes('/money/observers');
     if (!isSessionAPI) {
         clearUserSession(user.id);
     }

@@ -78,6 +78,30 @@ export const updateCurrentPage = (userId, newPage) => {
     return session;
 };
 
+// 사용자 부조금 세션 초기화
+export const initMoneySession = (userId, moneyLogs, targetName) => {
+    // 기존 세션 제거 (타이머 포함)
+    clearUserSession(userId);
+
+    // 새 세션 생성
+    const session = {
+        userId: userId,
+        type: 'money', // 세션 타입
+        moneyLogs: moneyLogs,
+        targetName: targetName, // 조회 중인 대상자 이름
+        timer: null,
+    };
+
+    // 10분 타이머 설정
+    session.timer = setTimeout(() => {
+        console.log(`⏰ 세션 타임아웃: userId=${userId}`);
+        clearUserSession(userId);
+    }, SESSION_TIMEOUT);
+
+    userSessions.push(session);
+    return session;
+};
+
 // 세션 삭제
 export const clearUserSession = (userId) => {
     const index = userSessions.findIndex((session) => session.userId === userId);

@@ -127,6 +127,7 @@ export const addRelationHandler = async (req, res) => {
                         },
                     },
                 ],
+                quickReplies: [QUICK_REPLIES.HOME],
             },
         });
     } catch (error) {

@@ -8,6 +8,7 @@ import userRouter from './routers/userRouter.js';
 import relationRouter from './routers/relationRouter.js';
 import eventRouter from './routers/eventRouter.js';
 import notificationRouter from './routers/notificationRouter.js';
+import moneyRouter from './routers/moneyRouter.js';
 
 const app = express();
 const server = createServer(app);
@@ -37,6 +38,7 @@ app.use('/api/users', userRouter);
 app.use('/api/relations', relationRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/notifications', notificationRouter);
+app.use('/api/money', moneyRouter);
 
 // 서버 시작
 server.listen(PORT, () => {
