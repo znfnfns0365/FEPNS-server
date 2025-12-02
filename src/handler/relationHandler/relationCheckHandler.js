@@ -1,3 +1,5 @@
+import { QUICK_REPLIES } from '../../constant/constants.js';
+
 export const relationCheckHandler = async (req, res) => {
     const user = req.user;
 

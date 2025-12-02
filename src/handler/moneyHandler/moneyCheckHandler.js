@@ -1,3 +1,5 @@
+import { QUICK_REPLIES } from '../../constant/constants.js';
+
 export const moneyCheckHandler = async (req, res) => {
     const user = req.user;
 
@@ -11,8 +13,11 @@ export const moneyCheckHandler = async (req, res) => {
                     },
                 },
             ],
-            quickReplies: [QUICK_REPLIES.CREATE_MONEY, QUICK_REPLIES.VIEW_MONEY, QUICK_REPLIES.HOME],
+            quickReplies: [
+                QUICK_REPLIES.CREATE_MONEY,
+                QUICK_REPLIES.VIEW_MONEY,
+                QUICK_REPLIES.HOME,
+            ],
         },
     });
 };
-
