@@ -25,3 +25,11 @@ export const deleteNotification = async (notificationId, userId) => {
     ]);
     return result;
 };
+
+export const countNotificationsSentTodayByCreator = async (creatorUserId) => {
+    const [rows] = await pools.fepns.query(
+        NOTIFICATION_QUERIES.COUNT_NOTIFICATIONS_SENT_TODAY_BY_CREATOR,
+        [creatorUserId],
+    );
+    return rows[0].count;
+};

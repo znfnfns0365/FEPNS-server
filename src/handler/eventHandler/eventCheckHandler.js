@@ -13,7 +13,11 @@ export const eventCheckHandler = async (req, res) => {
                     },
                 },
             ],
-            quickReplies: [QUICK_REPLIES.CREATE_EVENT, QUICK_REPLIES.VIEW_EVENTS],
+            quickReplies: [
+                QUICK_REPLIES.CREATE_EVENT,
+                QUICK_REPLIES.VIEW_EVENTS,
+                QUICK_REPLIES.HOME,
+            ],
         },
     });
 };

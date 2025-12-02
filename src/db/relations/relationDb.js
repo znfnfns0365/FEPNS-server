@@ -44,6 +44,14 @@ export const deleteRelation = async (userId, friendUserId, listType) => {
     return result;
 };
 
+export const getNotificationTargetsSendOnly = async (creatorUserId) => {
+    const [rows] = await pools.fepns.query(RELATION_QUERIES.GET_NOTIFICATION_TARGETS_SEND_ONLY, [
+        creatorUserId,
+        creatorUserId,
+    ]);
+    return rows;
+};
+
 export const getNotificationTargets = async (creatorUserId) => {
     const [rows] = await pools.fepns.query(RELATION_QUERIES.GET_NOTIFICATION_TARGETS, [
         creatorUserId,

@@ -102,4 +102,39 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '부조금 삭제',
     },
+    CREATE_EVENT: {
+        label: '경조사 등록',
+        action: 'message',
+        messageText: '경조사 등록',
+    },
+    VIEW_EVENTS: {
+        label: '경조사 목록',
+        action: 'message',
+        messageText: '경조사 목록',
+    },
+    CREATE_RELATION: {
+        label: '친구 추가',
+        action: 'message',
+        messageText: '친구 추가',
+    },
+    VIEW_RELATIONS: {
+        label: '친구 목록',
+        action: 'message',
+        messageText: '친구 목록',
+    },
+    DELETE_RELATION: {
+        label: '친구 삭제',
+        action: 'message',
+        messageText: '친구 삭제',
+    },
+    CREATE_MONEY: {
+        label: '부조금 기록',
+        action: 'message',
+        messageText: '부조금 기록',
+    },
+    VIEW_MONEY: {
+        label: '부조금 목록',
+        action: 'message',
+        messageText: '부조금 목록',
+    },
 };
