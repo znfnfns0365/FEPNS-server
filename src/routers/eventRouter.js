@@ -5,9 +5,11 @@ import { eventViewHandler } from '../handler/eventHandler/eventViewHandler.js';
 import { eventNextHandler } from '../handler/eventHandler/eventNextHandler.js';
 import { eventPrevHandler } from '../handler/eventHandler/eventPrevHandler.js';
 import { eventDeleteHandler } from '../handler/eventHandler/eventDeleteHandler.js';
+import { eventCheckHandler } from '../handler/eventHandler/eventCheckHandler.js';
 
 const eventRouter = Router();
 
+eventRouter.post('/', findUser, eventCheckHandler);
 eventRouter.post('/add', findUser, eventCreateHandler);
 eventRouter.post('/observers', findUser, eventViewHandler);
 eventRouter.post('/observers/next', findUser, eventNextHandler);

@@ -4,9 +4,11 @@ import { addRelationHandler } from '../handler/relationHandler/relationAddHandle
 import { relationObserversHandler } from '../handler/relationHandler/relationObserversHandler.js';
 import { relationCuriousAboutMeHandler } from '../handler/relationHandler/relationCuriousAboutMeHandler.js';
 import { deleteRelationHandler } from '../handler/relationHandler/relationDeleteHandler.js';
+import { relationCheckHandler } from '../handler/relationHandler/relationCheckHandler.js';
 
 const relationRouter = Router();
 
+relationRouter.post('/', findUser, relationCheckHandler);
 relationRouter.post('/add', findUser, addRelationHandler);
 relationRouter.post('/observers', findUser, relationObserversHandler);
 relationRouter.post('/delete', findUser, deleteRelationHandler);
