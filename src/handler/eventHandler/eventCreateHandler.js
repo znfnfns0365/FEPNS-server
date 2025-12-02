@@ -176,6 +176,7 @@ export const eventCreateHandler = async (req, res) => {
                         },
                     },
                 ],
+                quickReplies: [QUICK_REPLIES.HOME],
             },
         });
     } catch (error) {

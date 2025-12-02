@@ -36,6 +36,7 @@ const createSchemas = async () => {
         await executeSqlFile(pools.fepns, path.join(sqlDir, 'events.sql'));
         await executeSqlFile(pools.fepns, path.join(sqlDir, 'relations.sql'));
         await executeSqlFile(pools.fepns, path.join(sqlDir, 'notifications.sql'));
+        await executeSqlFile(pools.fepns, path.join(sqlDir, 'money_logs.sql'));
         console.log('✅ 데이터베이스 테이블이 성공적으로 생성되었습니다.');
     } catch (err) {
         console.error('❌ 데이터베이스 테이블 생성 중 오류가 발생했습니다:', err.message);

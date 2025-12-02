@@ -87,4 +87,14 @@ export const QUICK_REPLIES = {
         action: 'message',
         messageText: '알림 삭제',
     },
+    MONEY_DETAIL: {
+        label: '상세 조회하기',
+        action: 'message',
+        messageText: '상세 조회하기',
+    },
+    RETRY_ADD_MONEY: {
+        label: '부조금 다시 기록하기',
+        action: 'message',
+        messageText: '부조금 기록',
+    },
 };

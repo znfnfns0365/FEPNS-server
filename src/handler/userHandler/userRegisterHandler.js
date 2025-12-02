@@ -6,6 +6,7 @@ import {
 import { QUICK_REPLIES } from '../../constant/constants.js';
 
 const USER_ID_REGEX = /^[A-Za-z0-9_]+$/;
+const ONLY_NUMBERS_REGEX = /^\d+$/;
 
 const validateUserId = (userId) => {
     if (typeof userId !== 'string') {
@@ -18,6 +19,10 @@ const validateUserId = (userId) => {
 
     if (!USER_ID_REGEX.test(userId)) {
         return '아이디는 영문, 숫자, 밑줄(_)만 사용할 수 있습니다.';
+    }
+
+    if (ONLY_NUMBERS_REGEX.test(userId)) {
+        return '아이디는 숫자로만 구성될 수 없습니다. 영문이나 밑줄(_)을 포함해주세요.';
     }
 
     return null;
