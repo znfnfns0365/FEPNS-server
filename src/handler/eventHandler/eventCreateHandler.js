@@ -9,6 +9,7 @@ import {
 } from '../../db/notifications/notificationDb.js';
 import { VALID_EVENT_TYPES, QUICK_REPLIES } from '../../constant/constants.js';
 import { getEventThumbnail } from '../../constant/imageUrls.js';
+import { FREE_PLAN_LIMITS } from '../../constant/limits.js';
 
 export const eventCreateHandler = async (req, res) => {
     const { body } = req;
@@ -173,14 +174,14 @@ export const eventCreateHandler = async (req, res) => {
         const todayNotificationCount = await countNotificationsSentTodayByCreator(user.id);
         const totalNotifications = todayNotificationCount + targets.length;
 
-        if (totalNotifications > 50) {
+        if (totalNotifications > FREE_PLAN_LIMITS.MAX_NOTIFICATIONS_PER_DAY) {
             return res.status(200).json({
                 version: '2.0',
                 template: {
                     outputs: [
                         {
                             simpleText: {
-                                text: `하루에 최대 50개까지만 알림을 전송할 수 있습니다.\n오늘 이미 ${todayNotificationCount}개의 알림을 전송했습니다.\n내일 다시 시도해주세요.`,
+                                text: `하루에 최대 ${FREE_PLAN_LIMITS.MAX_NOTIFICATIONS_PER_DAY}개까지만 알림을 전송할 수 있습니다.\n오늘 이미 ${todayNotificationCount}개의 알림을 전송했습니다.\n내일 다시 시도해주세요.`,
                             },
                         },
                     ],
