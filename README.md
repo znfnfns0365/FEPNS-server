@@ -2,6 +2,19 @@
 
 카카오톡 챗봇 기반 경조사 알림 서비스
 
+## 👩‍💻 팀원
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/znfnfns0365"><sub><b> 팀원 : 권주원 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/juwon-G"><sub><b> 팀원 : 김동헌 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/yoonhaejeong"><sub><b> 팀원 : 보이나 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/buyanaa0740"><sub><b> 팀원 : 정해윤 </b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
+
 ## 📋 목차
 
 -   [프로젝트 소개](#프로젝트-소개)
