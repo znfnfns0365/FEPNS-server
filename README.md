@@ -7,10 +7,10 @@
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://github.com/znfnfns0365"><sub><b> 팀원 : 권주원 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/juwon-G"><sub><b> 팀원 : 김동헌 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/yoonhaejeong"><sub><b> 팀원 : 보이나 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/buyanaa0740"><sub><b> 팀원 : 정해윤 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/juwon-G"><sub><b> 팀원 : 권주원 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/znfnfns0365"><sub><b> 팀원 : 김동헌 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/buyanaa"><sub><b> 팀원 : 보이나 </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/yoonhaejeong"><sub><b> 팀원 : 정해윤 </b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
