@@ -1,4 +1,4 @@
-# FEPNS (Friend Event Proxy Notification Service)
+# FEPNS (Family Event Proxy Notification Service)
 
 카카오톡 챗봇 기반 경조사 알림 서비스
 
